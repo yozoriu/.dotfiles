@@ -1,5 +1,7 @@
-@define-color background #efe6c6;
-@define-color foreground #ffffff;
+@define-color background #3b4252;
+@define-color foreground #d8dee9;
+@define-color red #bf616a;
+@define-color green #a3be8c;
 
 * {
         font-size: 14px;
@@ -7,22 +9,22 @@
         font-weight: 200;
         min-height: 0;
         padding: 0;
+        color: @foreground;
 }
-
-#workspaces,
-#window,
-#mpris,
-#language,
-#pulseaudio,
-#memory,
-#clock,
-#disk,
-#tray {
-        margin-right: 10px;
-}
+/**/
+/* #workspaces, */
+/* #window, */
+/* #mpris, */
+/* #language, */
+/* #pulseaudio, */
+/* #memory, */
+/* #clock, */
+/* #disk, */
+/* #tray { */
+/* } */
 
 window#waybar {
-        background: transparent;
+        background: @background;
         color: @foreground;
 }
 
@@ -38,5 +40,12 @@ window#waybar {
 }
 
 #clock {
-        background: #000000;
+}
+
+#mpris {
+        color: @green;
+}
+
+#memory {
+        color: @red;
 }

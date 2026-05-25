@@ -1,15 +1,15 @@
 {
         "margin-top": 0,
-        "position": "top",
+        "position": "bottom",
         "margin-left": 0,
         "margin-right": 0,
         "spacing": 2, // Gaps between modules (4px)
                 // "modules-left": ["hyprland/workspaces","hyprland/window","mpris"],
                 // "modules-center": [],
                 // "modules-right": ["tray","hyprland/language","pulseaudio","memory","disk","clock"],
-                "modules-left": [],
+                "modules-left": ["mpris"],
                 "modules-center": [],
-                "modules-right": ["clock"],
+                "modules-right": ["memory","pulseaudio","clock","tray"],
 
                 // "hyprland/workspaces": {
                 //         "format": "{icon}",
@@ -20,20 +20,16 @@
                 // "hyprland/window": {
                 //         "max-length": 40
                 // },
-                // "mpris": {
-                //         "format": "<span color='#6D6D69'>[ </span><span color='#c4b08f'><b>sound:</b></span> {artist} - {title}<span color='#252525'> ]</span>",
-                //         "format-paused": "<span color='#6D6D69'>[ </span><span color='#c4b08f'><b>paused:</b></span> {artist} - {title}<span color='#252525'> ]</span>",
-                //         "max-length": 40,
-                //         "player-icons": {
-                //                 "default": "▶",
-                //                 "spotify": " "
-                //         },
-                //         "status-icons": {
-                //                 "paused": "⏸"
-                //         },
-                //         "artist-len": 15,
-                //         "title-len": 20
-                // },
+                "mpris": {
+                        "interval": 1,
+                        "player-icons": {
+                                "default": "▶",
+                                "spotify": " "
+                        },
+                        "status-icons": {
+                                "paused": "⏸"
+                        },
+                },
                 // "tray": {
                 //         "spacing": 10
                 // },
@@ -42,28 +38,27 @@
                 //         "format-en": "en",
                 //         "format-pt": "pt",
                 // },
-                // "pulseaudio": {
-                //         // "scroll-step": 1, // %, can be a float
-                //         "format": "O:{volume}% I:{format_source}",
-                //         "format-muted": "O:Muted I:{format_source}",
-                //         "format-source": "{volume}%",
-                //         "format-source-muted": "",
-                //         "on-click": "pwvucontrol"
-                // },
-                // "memory": {
-                //         "interval": 1,
-                //         "format": "RAM: {}%",
-                //         "max-length": 10
-                // },
+                "pulseaudio": {
+                        // "scroll-step": 1, // %, can be a float
+                        "format": "O:{volume}% I:{format_source}",
+                        "format-muted": "O:Muted I:{format_source}",
+                        "format-source": "{volume}%",
+                        "format-source-muted": "",
+                        "on-click": "pavucontrol"
+                },
+                "memory": {
+                        "interval": 1,
+                        "format": "mem: {}%",
+                        "max-length": 10
+                },
                 // "disk": {
                 //         "interval": 30,
                 //         "format": "DISK: {percentage_free}%",
                 //         "path": "/home"
                 // },
                 "clock": {
-                        "interval": 10,
-                        "format": "{:%H:%M}",
-                        "format-alt": "{:%A, %d %B, %Y - %R}",
+                        "interval": 1,
+                        "format": "{:%a %Y-%m-%d %R}",
                         "tooltip-format": "<tt><small>{calendar}</small></tt>",
                         "calendar": {
                                 "mode"          : "year",

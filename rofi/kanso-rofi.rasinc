@@ -1,15 +1,15 @@
 configuration {
 font: "JetBrainsMono 10";
-      show-icons: true;
+      show-icons: false;
       click-to-exit: true;
       display-drun: ">";
       drun-display-format: "{name}";
 }
 
 * {
-bg: #100F0F;
-fg: #CECDC3;
-acc: #6F6E69;
+bg: #3b4252;
+fg: #d8dee9;
+acc: #8fbcbb;
     background-color: @bg;
 }
 
