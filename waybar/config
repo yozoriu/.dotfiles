@@ -1,6 +1,7 @@
 {
         "margin-top": 0,
-        "position": "bottom",
+        "position": "top",
+        "output": "HDMI-A-1",
         "margin-left": 0,
         "margin-right": 0,
         "spacing": 2, // Gaps between modules (4px)
