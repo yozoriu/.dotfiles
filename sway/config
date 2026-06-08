@@ -1,7 +1,6 @@
 ### Variables
 set $mod Mod4
 set $terminal foot
-set $webbrowser firefox
 set $fileManager thunar
 set $menu ~/.config/rofi/launcher.sh
 
@@ -11,7 +10,7 @@ output HDMI-A-1 {
 }
 # output HDMI-A-1 mode 1024x768@75.029Hz position 0 0
 output VGA-1 {
-        resolution 1024x768@60Hz
+        resolution 1024x768@75.029Hz
         position 0,0 
 }
 
@@ -30,7 +29,6 @@ input "1133:16514:Logitech_G203_LIGHTSYNC_Gaming_Mouse" {
 
 
 bindsym $mod+Return exec $terminal
-bindsym $mod+q exec $webbrowser
 bindsym $mod+c kill
 bindsym $mod+e exec $fileManager
 bindsym $mod+v floating toggle
@@ -93,6 +91,13 @@ mode "resize" {
 }
 bindsym $mod+m mode "resize"
 
+mode "23switch" {
+        bindsym bracketleft workspace number 2
+        bindsym bracketright workspace number 3
+        bindsym Escape mode "default"
+}
+bindsym $mod+n mode "23switch"
+
 floating_modifier $mod normal
 
 bindsym $mod+Shift+c reload
@@ -117,48 +122,15 @@ default_border none
 gaps inner 0
 gaps outer 0
 
-set $color0  #22262D
-set $color1  #c4746e
-set $color2  #8a9a7b
-set $color3  #c4b28a
-set $color4  #8ba4b0
-set $color5  #a292a3
-set $color6  #8ea4a2
-set $color7  #a4a7a4
-
-set $color8  #5C6066
-set $color9  #E46876
-set $color10 #87a987
-set $color11 #E6C384
-set $color12 #7FB4CA
-set $color13 #938AA9
-set $color14 #7AA89F
-set $color15 #C5C9C7
-
-set $color16 #b6927b
-set $color17 #b98d7b
-
-set $background #22262D
-set $foreground #C5C9C7
-set $selection  #43464E
-
-
-# <colorclass>          <border>  <backgr.> <text>    <indicator> <child_border>
-client.focused          $color4   $color4   $color0   $color12    $color4
-client.focused_inactive $selection $selection $color7   $color8     $selection
-client.unfocused        $color0   $color0   $color7   $color0     $color0
-client.urgent           $color1   $color1   $color15  $color9     $color1
-client.placeholder      $color0   $color0   $color7   $color0     $color0
-client.background       $background
-
 # exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 || /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
 
 exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
-exec Discord
+exec discord
 exec ~/.config/scripts/reload_wallpaper.sh
 
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec systemctl --user start sway-session.target
 
 exec otd-daemon
 
