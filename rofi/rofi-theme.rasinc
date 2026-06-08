@@ -1,5 +1,5 @@
 configuration {
-font: "JetBrainsMono 10";
+font: "Cascadia Code NF 10";
       show-icons: false;
       click-to-exit: true;
       display-drun: ">";
@@ -7,9 +7,9 @@ font: "JetBrainsMono 10";
 }
 
 * {
-bg: #3b4252;
-fg: #d8dee9;
-acc: #8fbcbb;
+bg: #000000;
+fg: #eeeeee;
+acc: #6F6E69;
     background-color: @bg;
 }
 

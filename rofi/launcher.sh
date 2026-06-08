@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-theme="kanso-rofi"
+theme="rofi-theme"
 dir="$HOME/.config/rofi"
-
-rofi -no-lazy-grab -show drun -modi drun -no-fixed-num-lines -lines 5 -theme $dir/"$theme" -run-command "{cmd}"
+rofi -show run -theme $dir/"$theme" -run-command "{cmd}"

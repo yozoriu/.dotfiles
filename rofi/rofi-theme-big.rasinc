@@ -1,12 +1,12 @@
 configuration {
-font: "JetBrainsMono 10";
+font: "Cascadia Code NF 10";
       show-icons: true;
       click-to-exit: true;
 }
 
 * {
-bg: #100F0F;
-fg: #CECDC3;
+bg: #000000;
+fg: #eeeeee;
 acc: #6F6E69;
     background-color: @bg;
 }

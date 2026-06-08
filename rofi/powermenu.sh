@@ -1,6 +1,6 @@
 #!/bin/bash
 
-theme="kanso-rofi"
+theme="rofi-theme"
 dir="$HOME/.config/rofi"
 rofi_command="rofi -theme $dir/$theme -no-fixed-num-lines -run-command '{cmd}'"
 
