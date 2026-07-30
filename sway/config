@@ -6,27 +6,20 @@ set $menu ~/.config/rofi/launcher.sh
 
 output HDMI-A-1 {
         resolution 1600x900@60Hz
-        position 1024,0
-}
-# output HDMI-A-1 mode 1024x768@75.029Hz position 0 0
-output VGA-1 {
-        resolution 1024x768@75.029Hz
-        position 0,0 
+        background ~/Wallpapers/ina.jpg fill
 }
 
 input * {
-    xkb_layout "us,br"
+    xkb_layout "us,br,de"
     xkb_options "grp:win_space_toggle,ctrl:nocaps"
     repeat_rate 80
     repeat_delay 300
 }
 
-# Logitech G203
 input "1133:16514:Logitech_G203_LIGHTSYNC_Gaming_Mouse" {
     pointer_accel 0
     accel_profile flat
 }
-
 
 bindsym $mod+Return exec $terminal
 bindsym $mod+c kill
@@ -59,8 +52,10 @@ bindsym $mod+0 workspace number 10
 
 bindsym $mod+t layout tabbed
 bindsym $mod+Shift+t layout toggle all
-bindsym $mod+h focus prev
-bindsym $mod+l focus next
+bindsym $mod+h workspace prev
+bindsym $mod+l workspace next
+bindsym $mod+Alt+h focus prev
+bindsym $mod+Alt+l focus next
 
 bindsym $mod+Shift+1 move container to workspace number 1
 bindsym $mod+Shift+2 move container to workspace number 2
@@ -73,9 +68,9 @@ bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
 
-bindsym $mod+Ctrl+h focus left
 bindsym $mod+Ctrl+j focus down
 bindsym $mod+Ctrl+k focus up
+bindsym $mod+Ctrl+h focus left
 bindsym $mod+Ctrl+l focus right
 
 bindsym $mod+Tab focus next
@@ -119,20 +114,22 @@ for_window [class="xpad"] floating enable, move position 1200 60
 for_window [class="discord"] move workspace 6
 
 default_border none 
-gaps inner 0
-gaps outer 0
+gaps inner 4
+gaps outer 16
 
-# exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 || /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
+exec /usr/bin/lxpolkit
 
 exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
 exec discord
 exec ~/.config/scripts/reload_wallpaper.sh
 
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-exec systemctl --user start sway-session.target
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 
 exec otd-daemon
+
+xwayland enable
 
 bar {
         swaybar_command waybar
