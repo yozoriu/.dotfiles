@@ -1,78 +1,38 @@
 {
         "margin-top": 0,
         "position": "top",
-        "output": "HDMI-A-1",
-        "margin-left": 0,
-        "margin-right": 0,
-        "spacing": 2, // Gaps between modules (4px)
-                // "modules-left": ["hyprland/workspaces","hyprland/window","mpris"],
-                // "modules-center": [],
-                // "modules-right": ["tray","hyprland/language","pulseaudio","memory","disk","clock"],
-                "modules-left": ["mpris"],
-                "modules-center": [],
-                "modules-right": ["memory","pulseaudio","clock","tray"],
+        "spacing": 16,
+        "modules-left": ["sway/workspaces"],
+        "modules-center": [],
+        "modules-right": ["memory","pulseaudio","clock","tray","sway/language"],
 
-                // "hyprland/workspaces": {
-                //         "format": "{icon}",
-                //         "format-icons": {
-                //                 "10": "n",
-                //         }
-                // },
-                // "hyprland/window": {
-                //         "max-length": 40
-                // },
-                "mpris": {
-                        "interval": 1,
-                        "player-icons": {
-                                "default": "▶",
-                                "spotify": " "
-                        },
-                        "status-icons": {
-                                "paused": "⏸"
-                        },
+        "pulseaudio": {
+                "format": "out:{volume}% in:{format_source}",
+                "format-muted": "out:Muted in:{format_source}",
+                "format-source": "{volume}%",
+                "on-click": "pavucontrol"
+        },
+        "memory": {
+                "interval": 1,
+                "format": "mem: {}%",
+                "max-length": 10
+        },
+        "clock": {
+                "interval": 1,
+                "format": "{:%a %Y-%m-%d %R}",
+                "tooltip-format": "<tt><small>{calendar}</small></tt>",
+                "calendar": {
+                        "mode"          : "year",
+                        "mode-mon-col"  : 3,
+                        "weeks-pos"     : "right",
+                        "on-scroll"     : 1,
+                        "format": {
+                                "months":     "<span><b>{}</b></span>",
+                                "days":       "<span><b>{}</b></span>",
+                                "weeks":      "<span><b>W{}</b></span>",
+                                "weekdays":   "<span><b>{}</b></span>",
+                                "today":      "<span><b><u>{}</u></b></span>"
+                        }
                 },
-                // "tray": {
-                //         "spacing": 10
-                // },
-                // "hyprland/language": {
-                //         "format": "keyb: {}",
-                //         "format-en": "en",
-                //         "format-pt": "pt",
-                // },
-                "pulseaudio": {
-                        // "scroll-step": 1, // %, can be a float
-                        "format": "O:{volume}% I:{format_source}",
-                        "format-muted": "O:Muted I:{format_source}",
-                        "format-source": "{volume}%",
-                        "format-source-muted": "",
-                        "on-click": "pavucontrol"
-                },
-                "memory": {
-                        "interval": 1,
-                        "format": "mem: {}%",
-                        "max-length": 10
-                },
-                // "disk": {
-                //         "interval": 30,
-                //         "format": "DISK: {percentage_free}%",
-                //         "path": "/home"
-                // },
-                "clock": {
-                        "interval": 1,
-                        "format": "{:%a %Y-%m-%d %R}",
-                        "tooltip-format": "<tt><small>{calendar}</small></tt>",
-                        "calendar": {
-                                "mode"          : "year",
-                                "mode-mon-col"  : 3,
-                                "weeks-pos"     : "right",
-                                "on-scroll"     : 1,
-                                "format": {
-                                        "months":     "<span><b>{}</b></span>",
-                                        "days":       "<span><b>{}</b></span>",
-                                        "weeks":      "<span><b>W{}</b></span>",
-                                        "weekdays":   "<span><b>{}</b></span>",
-                                        "today":      "<span><b><u>{}</u></b></span>"
-                                }
-                        },
-                }
+        }
 }

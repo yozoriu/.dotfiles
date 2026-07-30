@@ -1,6 +1,7 @@
-@define-color background #000000;
-@define-color green #0da400;
-@define-color red #a90003;
+@define-color background rgba(38, 38, 38, 0.7);
+/* @define-color background #262626; */
+
+@define-color accent #00d3cc;
 
 * {
         font-size: 14px;
@@ -11,14 +12,26 @@
         color: @foreground;
 }
 
+#workspaces button {
+        border-radius: 0;
+}
+
+#workspaces button.focused {
+        border-bottom: 2px solid #ffffff;
+}
+
+/* .modules-left { */
+/*         background: @background; */
+/* } */
+/* .modules-right { */
+/*         background: @background; */
+/* } */
+
 window#waybar {
         background: @background;
         color: @foreground;
 }
-#mpris {
-        color: @green;
-}
 
 #memory {
-        color: @red;
+        color: @accent;
 }
