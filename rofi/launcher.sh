@@ -2,4 +2,4 @@
 
 theme="rofi-theme"
 dir="$HOME/.config/rofi"
-rofi -show run -theme $dir/"$theme" -run-command "{cmd}"
+rofi -show drun -theme $dir/"$theme" -run-command "{cmd}"
