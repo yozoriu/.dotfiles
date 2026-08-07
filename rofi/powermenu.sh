@@ -31,7 +31,8 @@ case $chosen in
         ;;
 	$logout)
 		if confirm_exit; then
-                        swaymsg exit
+                        # swaymsg exit
+                        niri msg action quit --skip-confirmation
 		fi
 	;;
 esac

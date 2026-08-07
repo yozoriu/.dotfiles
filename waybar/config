@@ -2,9 +2,9 @@
         "margin-top": 0,
         "position": "top",
         "spacing": 16,
-        "modules-left": ["sway/workspaces"],
+        "modules-left": ["niri/workspaces"],
         "modules-center": [],
-        "modules-right": ["memory","pulseaudio","clock","tray","sway/language"],
+        "modules-right": ["memory","pulseaudio","clock","tray","niri/language"],
 
         "pulseaudio": {
                 "format": "out:{volume}% in:{format_source}",
