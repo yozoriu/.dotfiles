@@ -1,7 +1,8 @@
 input {
         keyboard {
                 xkb {
-                        layout "us,br,de"
+                        layout "us"
+                        variant "alt-intl"
                         options "grp:win_space_toggle,ctrl:nocaps"
                 }
                 repeat-delay 300
@@ -12,14 +13,9 @@ input {
         }
 }
 
-spawn-at-startup "lxpolkit"
 spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
 spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
-spawn-at-startup "discord"
-spawn-at-startup "swaybg -i ~/Wallpapers/wolf_fox.jpg"
-// spawn-at-startup "dbus-update-activation-environment" "--systemd" "DISPLAY" "WAYLAND_DISPLAY" "SWAYSOCK" "XDG_CURRENT_DESKTOP"
-// spawn-at-startup "systemctl" "--user" "import-environment" "DISPLAY" "WAYLAND_DISPLAY" "SWAYSOCK" "XDG_CURRENT_DESKTOP"
-
+spawn-at-startup "swaybg -i ~/Wallpapers/beets.jpg"
 prefer-no-csd
 
 layout {
@@ -30,10 +26,10 @@ layout {
                 top 8
                 bottom 9
         }
-        background-color "#262626"
+        background-color "transparent"
 
         center-focused-column "never"
-        default-column-display "tabbed"
+        default-column-display "normal"
 
         default-column-width { proportion 1.0; }
 
@@ -42,24 +38,54 @@ layout {
         }
         border {
                 on
-                width 4
+                width 2
                 active-color "#ea9875"
                 inactive-color "#6C6C6C"
         }
-        shadow{
-                on
+
+        shadow {
+               on
         }
+
+        preset-column-widths {
+               proportion 0.35
+               proportion 0.65
+        }
+
 }
 
-window-rule {
-        match app-id="discord"
-        open-on-workspace "6"
+overview {
+         zoom 0.4
+         workspace-shadow {
+         off
+         }
 }
+
+// Workspaces
+// Emacs
+workspace "E" { open-on-output "HDMI-1"; }
+spawn-at-startup "emacs --daemon"
+window-rule { match at-startup=true app-id="Emacs"; open-on-workspace "E"; }
+
+// Terminal
+workspace "T" { open-on-output "HDMI-1"; }
+spawn-at-startup "alacritty"
+window-rule { match at-startup=true app-id="Alacritty"; open-on-workspace "T"; }
+
+// Firefox
+workspace "B" { open-on-output "HDMI-1"; }
+spawn-at-startup "firefox"
+window-rule { match at-startup=true app-id="firefox"; open-on-workspace "B"; }
+
+// Discord
+workspace "M"  { open-on-output "HDMI-1"; }
+spawn-at-startup "discord"
+window-rule { match at-startup=true app-id="discord"; open-on-workspace "M"; }
+
 
 binds {
         Mod+Return { spawn "alacritty"; }
         Mod+C { close-window; }
-        Mod+E { spawn "nautilus"; }
         Mod+V { toggle-window-floating; }
         Mod+F { fullscreen-window; }
         Mod+R { spawn "~/.config/rofi/launcher.sh"; }
@@ -70,6 +96,8 @@ binds {
         Mod+P { spawn "sh" "-c" "grim -g \"$(slurp)\" - | wl-copy"; }
         Mod+I { spawn "sh" "-c" "hyprpicker | wl-copy"; }
         Mod+Shift+R { spawn "foot" "~/.config/scripts/reader.sh"; }
+
+        Mod+O { switch-preset-column-width; }
 
         Mod+H { focus-column-left; }
         Mod+L { focus-column-right; }
@@ -87,12 +115,19 @@ binds {
         Mod+J { focus-workspace-down; }
         Mod+K { focus-workspace-up; }
 
-        Mod+Shift+1 { move-column-to-workspace 1; }
-        Mod+Shift+2 { move-column-to-workspace 2; }
-        Mod+Shift+3 { move-column-to-workspace 3; }
+        Mod+Shift+E { move-column-to-workspace "E"; }
+        Mod+Shift+B { move-column-to-workspace "B"; }
+        Mod+Shift+M { move-column-to-workspace "M"; }
+        Mod+Shift+T { move-column-to-workspace "T"; }
+
+        Mod+E { focus-workspace "E"; }
+        Mod+B { focus-workspace "B"; }
+        Mod+M { focus-workspace "M"; }
+        Mod+T { focus-workspace "T"; }
+
+
         Mod+Shift+4 { move-column-to-workspace 4; }
         Mod+Shift+5 { move-column-to-workspace 5; }
-        Mod+Shift+6 { move-column-to-workspace 6; }
         Mod+Shift+7 { move-column-to-workspace 7; }
         Mod+Shift+8 { move-column-to-workspace 8; }
         Mod+Shift+9 { move-column-to-workspace 9; }
@@ -103,9 +138,6 @@ binds {
         Mod+W { toggle-column-tabbed-display; }
 
 
-        Mod+1 { focus-workspace 1; }
-        Mod+2 { focus-workspace 2; }
-        Mod+3 { focus-workspace 3; }
         Mod+4 { focus-workspace 4; }
         Mod+5 { focus-workspace 5; }
         Mod+6 { focus-workspace 6; }
@@ -120,4 +152,63 @@ binds {
 
         Mod+Alt+J { set-window-height "+10%"; }
         Mod+Alt+K { set-window-height "-10%"; }
+
+}
+
+animations {
+    // Uncomment to turn off all animations.
+    // You can also put "off" into each individual animation to disable it.
+    // off
+
+    // Slow down all animations by this factor. Values below 1 speed them up instead.
+    // slowdown 3.0
+
+    // Individual animations.
+
+    workspace-switch {
+        spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
+    }
+
+    window-open {
+        duration-ms 150
+        curve "ease-out-expo"
+    }
+
+    window-close {
+        duration-ms 150
+        curve "ease-out-quad"
+    }
+
+    horizontal-view-movement {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+
+    window-movement {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+
+    window-resize {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+
+    config-notification-open-close {
+        spring damping-ratio=0.6 stiffness=1000 epsilon=0.001
+    }
+
+    exit-confirmation-open-close {
+        spring damping-ratio=0.6 stiffness=500 epsilon=0.01
+    }
+
+    screenshot-ui-open {
+        duration-ms 200
+        curve "ease-out-quad"
+    }
+
+    overview-open-close {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+
+    recent-windows-close {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.001
+    }
 }
