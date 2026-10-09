@@ -1,11 +1,8 @@
-@define-color background rgba(38, 38, 38, 0.7);
-/* @define-color background #262626; */
-
-@define-color accent #00d3cc;
+@define-color background rgba(0, 0, 0, 1);
 
 * {
         font-size: 14px;
-        font-family: "CommitMono";
+        font-family: "IBM Plex Mono";
         font-weight: 200;
         min-height: 0;
         padding: 0;
@@ -17,15 +14,8 @@
 }
 
 #workspaces button.focused {
-        border-bottom: 2px solid #ffffff;
+        border-bottom: 1px solid #ffffff;
 }
-
-/* .modules-left { */
-/*         background: @background; */
-/* } */
-/* .modules-right { */
-/*         background: @background; */
-/* } */
 
 window#waybar {
         background: @background;
@@ -33,5 +23,4 @@ window#waybar {
 }
 
 #memory {
-        color: @accent;
 }
